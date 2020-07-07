@@ -13,25 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NuScaleApp
+namespace NuScaleApp.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for BookView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class BookView : UserControl
     {
-        public MainWindow()
+        public BookView()
         {
             InitializeComponent();
         }
-        private void BookViewControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            NuScaleApp.ViewModel.BookViewModel BookViewModelObject = new NuScaleApp.ViewModel.BookViewModel();
-            BookViewModelObject.LoadBooks();
-
-            BookViewControl.DataContext = BookViewModelObject;
-        }
     }
-
-
 }
