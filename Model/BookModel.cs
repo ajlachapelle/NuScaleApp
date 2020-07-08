@@ -29,6 +29,18 @@ namespace NuScaleApp.Model
             set { }
         }
 
+        public int Quantity
+        {
+            get { return quantity; }
+            set { }
+        }
+
+        public double Price
+        {
+            get { return price; }
+            set { }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void RaisePropertyChanged(string property)
