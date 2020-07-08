@@ -43,13 +43,67 @@ namespace NuScaleApp.ViewModel
         }
         public int QuantityFilter
         {
-            get { return quantityFilter; }
+            //get { return quantityFilter; }
             set { }
         }
         public double PriceFilter
         {
             //get { return priceFilter; }
             set { }
+        }
+
+        public string newTitle;
+        public string newAuthor;
+        public int newQuantity;
+        public double newPrice;
+
+        public string NewTitle
+        {
+            get { return newTitle; }
+            set
+            {
+                if (newTitle != value)
+                {
+                    newTitle = value;
+                    RaisePropertyChanged(nameof(NewTitle));
+                }
+            }
+        }
+        public string NewAuthor
+        {
+            get { return newAuthor; }
+            set
+            {
+                if (newAuthor != value)
+                {
+                    newAuthor = value;
+                    RaisePropertyChanged(nameof(NewAuthor));
+                }
+            }
+        }
+        public int NewQuantity
+        {
+            get { return newQuantity; }
+            set
+            {
+                if (newQuantity != value)
+                {
+                    newQuantity = value;
+                    RaisePropertyChanged(nameof(NewQuantity));
+                }
+            }
+        }
+        public double NewPrice
+        {
+            get { return newPrice; }
+            set
+            {
+                if (newPrice != value)
+                {
+                    newPrice = value;
+                    RaisePropertyChanged(nameof(NewPrice));
+                }
+            }
         }
 
         public MyICommand FilterCommand
@@ -120,13 +174,13 @@ namespace NuScaleApp.ViewModel
             bookDatabase.Add(new Book("Title9", "Author9", 50, 30));
             bookDatabase.Add(new Book("Title10", "Author10", 1, 59.99));
 
-            titleFilter = "Title";
-            authorFilter = "Author";
-            quantityFilter = 0;
-            priceFilter = 100;
+            titleFilter = "";
+            authorFilter = "";
+            //quantityFilter = 0;
+            //priceFilter = 100;
             
             FilterCommand = new MyICommand(LoadBooks);
-            FilterCommand = new MyICommand(AddBook);
+            AddCommand = new MyICommand(AddBook);
             RemoveCommand = new MyICommand(RemoveBook, CanRemove);
         }
 
@@ -136,8 +190,8 @@ namespace NuScaleApp.ViewModel
             from item in bookDatabase
             where item.Author.Contains(authorFilter)
                 && item.Title.Contains(titleFilter)
-                && item.Quantity >= (quantityFilter)
-                && item.Price <= (priceFilter)
+                //&& item.Quantity >= (quantityFilter)
+                //&& item.Price <= (priceFilter)
             select item;
 
             ObservableCollection<Book> filteredBooks = new ObservableCollection<Book>();
@@ -150,7 +204,7 @@ namespace NuScaleApp.ViewModel
 
         public void AddBook()
         {
-            //bookDatabase.Add(new Book(NewTitle, NewAuthor, NewQuantity, NewPrice));
+            bookDatabase.Add(new Book(NewTitle, NewAuthor, NewQuantity, NewPrice));
             LoadBooks();
         }
         private void RemoveBook()

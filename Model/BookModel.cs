@@ -65,8 +65,16 @@ namespace NuScaleApp.Model
 
         public Book(string title, string author, int quantity, double price)
         {
-            this.title = title;
-            this.author = author;
+            if (title == null)
+                this.title = "(No Title)";
+            else
+                this.title = title;
+
+            if (author == null)
+                this.author = "(No Author)";
+            else
+                this.author = author;
+
             this.quantity = quantity;
             this.price = price;
         }
