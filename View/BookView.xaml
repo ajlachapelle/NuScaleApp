@@ -56,7 +56,13 @@
         <Button Content = "Remove Selected" Command = "{Binding RemoveCommand}" Grid.Row="2" Width="100" HorizontalAlignment="Left"/>
 
         <!-- Add Interface -->
-
+        <StackPanel Orientation = "Horizontal" Grid.Row="3">
+            <TextBox Text = "{Binding Path = NewTitle, Mode = TwoWay, UpdateSourceTrigger=PropertyChanged}" Width = "100" Margin = "3 5 3 5" Name="NewTitleTextbox"/>
+            <TextBox Text = "{Binding Path = NewAuthor, Mode = TwoWay, UpdateSourceTrigger=PropertyChanged}" Width = "100" Margin = "0 5 3 5" Name="NewAuthorTextbox"/>
+            <TextBox Text = "{Binding Path = NewQuantity, Mode = TwoWay, UpdateSourceTrigger=PropertyChanged}" Width = "100" Margin = "3 5 3 5" Name="NewQuantityTextbox"/>
+            <TextBox Text = "{Binding Path = NewPrice, Mode = TwoWay, UpdateSourceTrigger=PropertyChanged}" Width = "100" Margin = "0 5 3 5" Name="NewPriceTextbox"/>
+            <Button Content = "Add" Command = "{Binding AddCommand}" Width="100" HorizontalAlignment="Left"/>
+        </StackPanel>
 
     </Grid>
 </UserControl>

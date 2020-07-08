@@ -43,7 +43,7 @@ namespace NuScaleApp.ViewModel
         }
         public int QuantityFilter
         {
-            //get { return quantityFilter; }
+            get { return quantityFilter; }
             set { }
         }
         public double PriceFilter
@@ -53,6 +53,12 @@ namespace NuScaleApp.ViewModel
         }
 
         public MyICommand FilterCommand
+        {
+            get;
+            set;
+        }
+
+        public MyICommand AddCommand
         {
             get;
             set;
@@ -120,6 +126,7 @@ namespace NuScaleApp.ViewModel
             priceFilter = 100;
             
             FilterCommand = new MyICommand(LoadBooks);
+            FilterCommand = new MyICommand(AddBook);
             RemoveCommand = new MyICommand(RemoveBook, CanRemove);
         }
 
@@ -141,9 +148,9 @@ namespace NuScaleApp.ViewModel
             Books = filteredBooks;
         }
 
-        public void AddBook(string title, string author, int quantity, double price)
+        public void AddBook()
         {
-            bookDatabase.Add(new Book(title, author, quantity, price));
+            //bookDatabase.Add(new Book(NewTitle, NewAuthor, NewQuantity, NewPrice));
             LoadBooks();
         }
         private void RemoveBook()
