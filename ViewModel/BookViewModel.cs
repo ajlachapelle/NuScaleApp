@@ -12,10 +12,11 @@ namespace NuScaleApp.ViewModel
 {
     public class BookViewModel : INotifyPropertyChanged
     {
-        public string titleFilter;
-        public string authorFilter;
-        public int quantityFilter;
-        public double priceFilter;
+        // Filter-interface properties
+        private string titleFilter;
+        private string authorFilter;
+        private int quantityFilter;
+        private double priceFilter;
 
         public string TitleFilter
         {
@@ -29,6 +30,7 @@ namespace NuScaleApp.ViewModel
                 }
             }
         }
+
         public string AuthorFilter
         {
             get { return authorFilter; }
@@ -41,22 +43,25 @@ namespace NuScaleApp.ViewModel
                 }
             }
         }
+
         public int QuantityFilter
         {
             //get { return quantityFilter; }
             set { }
         }
+
         public double PriceFilter
         {
             //get { return priceFilter; }
             set { }
         }
 
+
+        // Add-interface properties
         public string newTitle;
         public string newAuthor;
         public int newQuantity;
         public double newPrice;
-
         public string NewTitle
         {
             get { return newTitle; }
@@ -69,6 +74,7 @@ namespace NuScaleApp.ViewModel
                 }
             }
         }
+
         public string NewAuthor
         {
             get { return newAuthor; }
@@ -81,6 +87,7 @@ namespace NuScaleApp.ViewModel
                 }
             }
         }
+
         public int NewQuantity
         {
             get { return newQuantity; }
@@ -93,6 +100,7 @@ namespace NuScaleApp.ViewModel
                 }
             }
         }
+
         public double NewPrice
         {
             get { return newPrice; }
@@ -105,6 +113,7 @@ namespace NuScaleApp.ViewModel
                 }
             }
         }
+
 
         public MyICommand FilterCommand
         {
@@ -132,6 +141,7 @@ namespace NuScaleApp.ViewModel
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
 
+
         public ObservableCollection<Book> bookDatabase;
 
         private ObservableCollection<Book> books;
@@ -148,6 +158,7 @@ namespace NuScaleApp.ViewModel
             }
         }
 
+
         private Book selectedBook;
         public Book SelectedBook
         {
@@ -158,6 +169,7 @@ namespace NuScaleApp.ViewModel
                 RemoveCommand.RaiseCanExecuteChanged();
             }
         }
+
 
         public BookViewModel()
         {
@@ -183,6 +195,7 @@ namespace NuScaleApp.ViewModel
             AddCommand = new MyICommand(AddBook);
             RemoveCommand = new MyICommand(RemoveBook, CanRemove);
         }
+
 
         public void LoadBooks()
         {

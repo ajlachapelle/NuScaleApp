@@ -65,11 +65,11 @@ namespace NuScaleApp.Model
 
         public Book(string title, string author, int quantity, double price)
         {
+            // Default string is needed to allow for adding arbitrary books without a defined title/author
             if (title == null)
                 this.title = "(No Title)";
             else
                 this.title = title;
-
             if (author == null)
                 this.author = "(No Author)";
             else
