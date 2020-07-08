@@ -18,9 +18,9 @@
 
                 <TextBlock Text = "{Binding Path = Author}" Width = "100" Margin = "0 5 3 5"/>
 
-                <TextBlock Text = "{Binding Path = Quantity}" Width = "100" Margin = "3 5 3 5"/>
+                <TextBox Text = "{Binding Path = Quantity, Mode=TwoWay}" Width = "100" Margin = "3 5 3 5"/>
 
-                <TextBlock Text = "{Binding Path = Price}" Width = "100" Margin = "0 5 3 5"/>
+                <TextBox Text = "{Binding Path = Price, Mode=TwoWay}" Width = "100" Margin = "3 5 3 5"/>
             </StackPanel>
         </DataTemplate>
     </UserControl.Resources>

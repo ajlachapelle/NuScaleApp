@@ -46,13 +46,27 @@ namespace NuScaleApp.Model
         public int Quantity
         {
             get { return quantity; }
-            set { }
+            set
+            {
+                if (quantity != value)
+                {
+                    quantity = value;
+                    RaisePropertyChanged("Quantity");
+                }
+            }
         }
 
         public double Price
         {
             get { return price; }
-            set { }
+            set
+            {
+                if (price != value)
+                {
+                    price = value;
+                    RaisePropertyChanged("Price");
+                }
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
