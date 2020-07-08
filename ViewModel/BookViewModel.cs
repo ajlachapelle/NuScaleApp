@@ -25,7 +25,7 @@ namespace NuScaleApp.ViewModel
                 if (titleFilter != value)
                 {
                     titleFilter = value;
-                    //NotifyPropertyChanged(nameof(TitleFilter));
+                    RaisePropertyChanged(nameof(TitleFilter));
                 }
             }
         }
@@ -37,7 +37,7 @@ namespace NuScaleApp.ViewModel
                 if (authorFilter != value)
                 {
                     authorFilter = value;
-                    //NotifyPropertyChanged(nameof(AuthorFilter));
+                    RaisePropertyChanged(nameof(AuthorFilter));
                 }
             }
         }
@@ -52,6 +52,18 @@ namespace NuScaleApp.ViewModel
             set { }
         }
 
+        public MyICommand FilterCommand
+        {
+            get;
+            set;
+        }
+
+        public MyICommand RemoveCommand
+        {   
+            get; 
+            set; 
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void RaisePropertyChanged(string property)
@@ -61,10 +73,30 @@ namespace NuScaleApp.ViewModel
         }
 
         public ObservableCollection<Book> bookDatabase;
+
+        private ObservableCollection<Book> books;
         public ObservableCollection<Book> Books
         {
-            get;
-            set;
+            get { return books; }
+            set
+            {
+                if (books != value)
+                {
+                    books = value;
+                    RaisePropertyChanged(nameof(books));
+                };
+            }
+        }
+
+        private Book selectedBook;
+        public Book SelectedBook
+        {
+            get { return selectedBook; }
+            set
+            {
+                selectedBook = value;
+                RemoveCommand.RaiseCanExecuteChanged();
+            }
         }
 
         public BookViewModel()
@@ -82,10 +114,13 @@ namespace NuScaleApp.ViewModel
             bookDatabase.Add(new Book("Title9", "Author9", 50, 30));
             bookDatabase.Add(new Book("Title10", "Author10", 1, 59.99));
 
-            titleFilter = "";
-            authorFilter = "";
+            titleFilter = "Title";
+            authorFilter = "Author";
             quantityFilter = 0;
             priceFilter = 100;
+            
+            FilterCommand = new MyICommand(LoadBooks);
+            RemoveCommand = new MyICommand(RemoveBook, CanRemove);
         }
 
         public void LoadBooks()
@@ -111,10 +146,14 @@ namespace NuScaleApp.ViewModel
             bookDatabase.Add(new Book(title, author, quantity, price));
             LoadBooks();
         }
-        public void RemoveBook(Book book)
+        private void RemoveBook()
         {
-            bookDatabase.Remove(book);
+            bookDatabase.Remove(SelectedBook);
             LoadBooks();
+        }
+        private bool CanRemove()
+        {
+            return SelectedBook != null;
         }
     }
 }

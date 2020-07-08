@@ -32,6 +32,4 @@ namespace NuScaleApp
             BookViewControl.DataContext = BookViewModelObject;
         }
     }
-
-
 }

@@ -23,6 +23,7 @@ namespace NuScaleApp.View
         public BookView()
         {
             InitializeComponent();
+            this.DataContext = new NuScaleApp.ViewModel.BookViewModel();
         }
     }
 }

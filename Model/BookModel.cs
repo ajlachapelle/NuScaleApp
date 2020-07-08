@@ -20,13 +20,27 @@ namespace NuScaleApp.Model
         public string Title
         {
             get { return title; }
-            set { }
+            set
+            {
+                if (title != value)
+                {
+                    title = value;
+                    RaisePropertyChanged("Title");
+                }
+            }
         }
 
         public string Author
         {
             get { return author; }
-            set { }
+            set
+            {
+                if (author != value)
+                {
+                    author = value;
+                    RaisePropertyChanged("Author");
+                }
+            }
         }
 
         public int Quantity
